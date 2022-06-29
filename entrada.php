@@ -1,6 +1,8 @@
 <?php
-include 'includes/header.php';
+require 'includes/funciones.php';
+incluirTemplate('header');
 ?>
+
 
 <!-- Main -->
 <main class="contenedor seccion contenido-centrado">
@@ -34,19 +36,6 @@ include 'includes/header.php';
 </main>
 
 <!-- Footer -->
-<footer class="footer seccion">
-  <div class="contenedor contenedor-footer">
-    <nav class="navegacion">
-      <a href="nosotros.php">Nosotros</a>
-      <a href="anuncios.php">Anuncios</a>
-      <a href="blog.php">Blog</a>
-      <a href="contacto.php">Contacto</a>
-    </nav>
-  </div>
-  <p class="copyright">Todos los derechos reservados 2022 &copy;</p>
-</footer>
-
-<script src="build/js/bundle.min.js"></script>
-</body>
-
-</html>
+<?php
+incluirTemplate('footer');
+?>
