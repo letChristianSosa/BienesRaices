@@ -58,6 +58,8 @@ function watchArchivos() {
   watch(paths.js, javascript);
   watch(paths.imagenes, imagenes);
   watch(paths.imagenes, versionWebp);
+  watch(paths.imagenesCargadas, imagenesCargadas);
+  watch(paths.imagenesCargadas, versionWebpCargadas);
 }
 
 exports.css = css;
