@@ -1,6 +1,10 @@
 .dark-mode {
   background-color: darken($grisOscuro, 10);
 
+  pre {
+    color: white;
+  }
+
   p {
     color: $blanco;
   }

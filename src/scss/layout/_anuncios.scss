@@ -2,14 +2,23 @@
   .contenedor-anuncios {
     @include grid(3, 2rem);
   }
+
+  .anuncio {
+    margin-bottom: 0;
+  }
 }
 
 .anuncio {
   background-color: lighten($gris, 5);
   border: 1px solid darken($gris, 10);
+  margin-bottom: 1rem;
 
   .contenido-anuncio {
     padding: 2rem;
+    height: 55rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   p,
