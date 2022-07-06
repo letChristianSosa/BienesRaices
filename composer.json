@@ -1,0 +1,17 @@
+{
+  "name": "chris/bienes-raices",
+  "description": "Bienes Raices con POO",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "App\\": "./classes"
+    }
+  },
+  "authors": [
+    {
+      "name": "Christian Sosa",
+      "email": "chrissm28@outlook.com"
+    }
+  ],
+  "require": {}
+}

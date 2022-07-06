@@ -108,9 +108,10 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
     $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, estacionamiento, creado, vendedorId) VALUES ('$titulo', '$precio', '$nombreImagen', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$creado', '$vendedorId')";
 
-    // echo $query;
 
     $resultado = mysqli_query($db, $query);
+    echo $resultado;
+    // exit;
     if ($resultado) {
       // Redirecciona a la ruta /admin
       header('Location: /admin?resultado=1');

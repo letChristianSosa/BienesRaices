@@ -1,12 +1,12 @@
 <?php
 
 // Importar la Conexion
-require 'includes/config/database.php';
+require 'includes/app';
 $db = conectarDB();
 
 // Crear un email y un password;
-$email = "correo2@correo.com";
-$password = "654321";
+$email = "correo@correo.com";
+$password = "123456";
 // Los password Hasheados siempre son de 60 caracteres (Hacer la columna de la BD con CHAR(60))
 // $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 $passwordHash = password_hash($password, PASSWORD_BCRYPT);
