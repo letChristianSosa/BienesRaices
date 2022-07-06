@@ -3,6 +3,7 @@
 require '../../includes/funciones.php';
 $auth = estaAutenticado();
 
+// Si no esta autenticado, regresa a /
 if (!$auth) {
   header('Location: /');
 }
