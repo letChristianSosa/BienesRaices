@@ -27,63 +27,14 @@ $vendedorId = '';
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
   $propiedad = new Propiedad($_POST);
-
-  $propiedad->guardar();
-
-
-  $titulo = mysqli_real_escape_string($db, $_POST['titulo']);
-  $precio = mysqli_real_escape_string($db, $_POST['precio']);
-  $descripcion = mysqli_real_escape_string($db, $_POST['descripcion']);
-  $habitaciones = mysqli_real_escape_string($db, $_POST['habitaciones']);
-  $wc = mysqli_real_escape_string($db, $_POST['wc']);
-  $estacionamiento = mysqli_real_escape_string($db, $_POST['estacionamiento']);
-  $vendedorId = mysqli_real_escape_string($db, $_POST['vendedorId']) ?? null;
-  $creado = date('Y/m/d');
-
-  // Variable para la imagen
-  $imagen = $_FILES['imagen'];
-
-  // Validaciones {
-  if (!$titulo) {
-    $errores[] = 'La propiedad debe tener un titulo';
-  }
-  if (!$precio) {
-    $errores[] = 'La propiedad debe tener un precio';
-  }
-  if (strlen($descripcion) < 30) {
-    $errores[] = 'La propiedad debe tener una descripcion y debe ser mayor a 30 caracteres';
-  }
-  if (!$habitaciones) {
-    $errores[] = 'La propiedad debe tener la cantidad de habitaciones';
-  }
-  if (!$wc) {
-    $errores[] = 'La propiedad debe tener la cantidad de banos';
-  }
-  if (!$estacionamiento) {
-    $errores[] = 'La propiedad debe tener la cantidad de estacionamiento';
-  }
-  if (!$vendedorId) {
-    $errores[] = 'La propiedad debe tener vendedor';
-  }
-
-  if (!$imagen['name'] || $imagen['error']) {
-    $errores[] = 'La propiedad debe tener una imagen';
-  }
-
-  // imagen['size'] mayor a 100kb
-  if ($imagen['size'] > (10000000)) {
-    $errores[] = 'La imagen debe ser menor a 10MB';
-  }
-  // }
-
-  // echo "<pre>";
-  // var_dump($errores);
-  // echo "</pre>";
-  // exit;
+  $errores = $propiedad->validar();
 
 
   // La funcion empty revisa si el array esta vacio
   if (empty($errores)) {
+    $propiedad->guardar();
+    // Variable para la imagen
+    $imagen = $_FILES['imagen'];
     // Subida de ARCHIVOS {
     $carpetaImagenes = "../../imagenes/";
     if (!is_dir($carpetaImagenes)) {
@@ -102,13 +53,13 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
 
 
-    $resultado = mysqli_query($db, $query);
-    echo $resultado;
-    // exit;
-    if ($resultado) {
-      // Redirecciona a la ruta /admin
-      header('Location: /admin?resultado=1');
-    }
+    // $resultado = mysqli_query($db, $query);
+    // echo $resultado;
+    // // exit;
+    // if ($resultado) {
+    //   // Redirecciona a la ruta /admin
+    //   header('Location: /admin?resultado=1');
+    // }
   }
 };
 

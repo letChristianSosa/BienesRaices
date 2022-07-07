@@ -13,5 +13,7 @@
       "email": "chrissm28@outlook.com"
     }
   ],
-  "require": {}
+  "require": {
+    "intervention/image": "^2.7"
+  }
 }
