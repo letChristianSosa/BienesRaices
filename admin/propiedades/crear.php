@@ -1,13 +1,11 @@
 <?php
 
-require '../../includes/funciones.php';
-$auth = estaAutenticado();
+require '../../includes/app.php';
 
-if (!$auth) {
-  header('Location: /');
-}
+use App\Propiedad;
 
-require '../../includes/config/database.php';
+estaAutenticado();
+
 $db = conectarDB();
 // var_dump($db);
 
@@ -27,15 +25,10 @@ $estacionamiento = '';
 $vendedorId = '';
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
-  // echo "<pre>";
-  // var_dump($_POST);
-  // echo "</pre>";
 
-  // echo "<pre>";
-  // var_dump($_FILES);
-  // echo "</pre>";
+  $propiedad = new Propiedad($_POST);
 
-  // exit;
+  $propiedad->guardar();
 
 
   $titulo = mysqli_real_escape_string($db, $_POST['titulo']);
@@ -44,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
   $habitaciones = mysqli_real_escape_string($db, $_POST['habitaciones']);
   $wc = mysqli_real_escape_string($db, $_POST['wc']);
   $estacionamiento = mysqli_real_escape_string($db, $_POST['estacionamiento']);
-  $vendedorId = mysqli_real_escape_string($db, $_POST['vendedor']) ?? null;
+  $vendedorId = mysqli_real_escape_string($db, $_POST['vendedorId']) ?? null;
   $creado = date('Y/m/d');
 
   // Variable para la imagen
@@ -106,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     // } Fin subida de archivos 
 
 
-    $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, estacionamiento, creado, vendedorId) VALUES ('$titulo', '$precio', '$nombreImagen', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$creado', '$vendedorId')";
+
 
 
     $resultado = mysqli_query($db, $query);
@@ -168,7 +161,7 @@ incluirTemplate('header');
     </fieldset>
     <fieldset>
       <legend>Vendedor</legend>
-      <select name="vendedor">
+      <select name="vendedorId">
         <option value="" <?php echo $vendedorId === '' ? 'selected' : '' ?> disabled>Seleccione un vendedor</option>
 
         <!-- <option value="1">Chris</option>
